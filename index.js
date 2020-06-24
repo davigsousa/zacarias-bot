@@ -35,7 +35,7 @@ client.on("message", (message) => {
       const { pergunta, resposta } = response.data;
 
       message.channel.send(pergunta);
-      setTimeout(() => message.channel.send(`R- ${resposta}`), 2000);
+      message.channel.send(`R- ${resposta}`);
     })();
   }
 });
