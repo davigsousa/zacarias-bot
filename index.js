@@ -21,7 +21,10 @@ client.on("message", (message) => {
     message.channel.send("Euuuuu!!");
   }
 
-  if (message.content.toLowerCase().includes("piada")) {
+  if (
+    message.content.toLowerCase().includes("piada") ||
+    message.content.toLowerCase().includes("charada")
+  ) {
     (async () => {
       const response = await axios.default.get(
         "https://us-central1-kivson.cloudfunctions.net/charada-aleatoria",
