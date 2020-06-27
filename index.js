@@ -6,6 +6,9 @@ const client = new Discord.Client();
 
 let first = true;
 let update = new Date();
+let updateDate = `${String(update.getDate()).padStart(2, "0")}/${String(
+  update.getMonth()
+).padStart(2, "0")}/${update.getFullYear()}`;
 const saves = {};
 
 client.on("ready", () => {
@@ -15,13 +18,7 @@ client.on("ready", () => {
 client.on("message", (message) => {
   if (first) {
     message.channel.send(
-      `Última atualização realizada em ${String(update.getDate()).padStart(
-        2,
-        "0"
-      )}/${String(update.getMonth()).padStart(
-        2,
-        "0"
-      )}/${update.getFullYear()}. Os saves antes disso foram perdidos.`
+      `Última atualização realizada em ${updateDate}. Os saves antes disso foram perdidos.`
     );
     first = false;
   }
@@ -78,6 +75,8 @@ client.on("message", (message) => {
       message.channel.send("Infelizmente não pude achar essa informação.");
     }
   }
+
+  if (starts("=update")) message.channel.send(updateDate);
 });
 
 client.login("NzI1MTY5NTg1NTEwMTU0Mjgz.XvK26Q.s0dUM0A2xDOzXuE7VyDIgP64xqk");
