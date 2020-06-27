@@ -7,7 +7,7 @@ const client = new Discord.Client();
 let first = true;
 let update = new Date();
 let updateDate = `${String(update.getDate()).padStart(2, "0")}/${String(
-  update.getMonth()
+  update.getMonth() + 1
 ).padStart(2, "0")}/${update.getFullYear()}`;
 const saves = {};
 
