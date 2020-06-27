@@ -4,27 +4,33 @@ const axios = require("axios");
 
 const client = new Discord.Client();
 
+const saves = {};
+
 client.on("ready", () => {
   console.log("I am ready!");
 });
 
 client.on("message", (message) => {
+  const contain = (target) => {
+    return message.content.toLowerCase().includes(target);
+  };
+
+  const starts = (target) => {
+    return message.content.toLowerCase().startsWith(target);
+  };
+
+  // Ping Pong
   if (message.content === "ping") {
     message.channel.send("pong");
   }
 
-  if (
-    message.content.toLowerCase().includes("otario") ||
-    message.content.toLowerCase().includes("otaru") ||
-    message.content.toLowerCase().includes("otário")
-  ) {
-    message.channel.send("Euuuuu!!");
+  // Besteira
+  if (contain("otario") || contain("otaru") || contain("otário")) {
+    message.channel.send("Sou euuuuu!!");
   }
 
-  if (
-    message.content.toLowerCase().includes("piada") ||
-    message.content.toLowerCase().includes("charada")
-  ) {
+  // Api de piadas
+  if (contain("piada") || contain("charada")) {
     (async () => {
       const response = await axios.default.get(
         "https://us-central1-kivson.cloudfunctions.net/charada-aleatoria",
@@ -40,6 +46,22 @@ client.on("message", (message) => {
       message.channel.send(pergunta);
       message.channel.send(`R- ${resposta}`);
     })();
+  }
+
+  // Comandos
+  if (starts("=save")) {
+    const parts = message.content.split(" ");
+    saves[parts[1]] = parts[2];
+    message.channel.send(`${parts[1]} salvo com sucesso!`);
+  }
+
+  if (starts("=get")) {
+    const parts = message.content.split(" ");
+    if (saves.hasOwnProperty(parts[1])) {
+      message.channel.send(saves[parts[1]]);
+    } else {
+      message.channel.send("Infelizmente não pude achar essa informação.");
+    }
   }
 });
 
