@@ -4,6 +4,8 @@ const axios = require("axios");
 
 const client = new Discord.Client();
 
+let first = true;
+let update = new Date();
 const saves = {};
 
 client.on("ready", () => {
@@ -11,6 +13,19 @@ client.on("ready", () => {
 });
 
 client.on("message", (message) => {
+  if (first) {
+    message.channel.send(
+      `Última atualização realizada em ${String(update.getDate()).padStart(
+        2,
+        "0"
+      )}/${String(update.getMonth()).padStart(
+        2,
+        "0"
+      )}/${update.getFullYear()}. Os saves antes disso foram perdidos.`
+    );
+    first = false;
+  }
+
   const contain = (target) => {
     return message.content.toLowerCase().includes(target);
   };
