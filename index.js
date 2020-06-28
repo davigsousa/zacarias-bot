@@ -1,4 +1,5 @@
 "use strict";
+require("dotenv").config();
 const Discord = require("discord.js");
 const axios = require("axios");
 
@@ -84,4 +85,4 @@ client.on("message", (message) => {
   if (starts("=update")) message.channel.send(updateMessage);
 });
 
-client.login("NzI1MTY5NTg1NTEwMTU0Mjgz.XvK26Q.s0dUM0A2xDOzXuE7VyDIgP64xqk");
+client.login(process.env.TOKEN);
