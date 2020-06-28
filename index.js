@@ -66,17 +66,13 @@ client.on("message", (message) => {
     if (contain("add")) {
       saves[parts[2]] = parts[3];
       message.channel.send(`${parts[2]} salvo com sucesso!`);
-    }
-
-    if (contain("get")) {
+    } else if (contain("get")) {
       if (saves.hasOwnProperty(parts[2])) {
         message.channel.send(saves[parts[2]]);
       } else {
         message.channel.send("Infelizmente não pude achar essa informação.");
       }
-    }
-
-    if (contain("list")) {
+    } else if (contain("list")) {
       message.channel.send("Informações salvas:");
       Object.keys(saves).forEach((item) => {
         message.channel.send(item);
