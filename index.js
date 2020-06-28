@@ -78,9 +78,9 @@ client.on("message", (message) => {
 
     if (contain("list")) {
       message.channel.send("Informações salvas:");
-      for (key in saves) {
-        message.channel.send(key);
-      }
+      Object.keys(saves).forEach((item) => {
+        message.channel.send(item);
+      });
       message.channel.send("===================");
     }
   }
