@@ -78,7 +78,7 @@ client.on("message", (message) => {
       Object.keys(saves).forEach((item) => {
         message.channel.send(item);
       });
-      message.channel.send("===================");
+      message.channel.send("============");
     }
   }
 
