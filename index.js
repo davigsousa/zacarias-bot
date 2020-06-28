@@ -65,7 +65,7 @@ client.on("message", (message) => {
 
     if (contain("add")) {
       saves[parts[2]] = parts[3];
-      message.channel.send(`${parts[3]} salvo com sucesso!`);
+      message.channel.send(`${parts[2]} salvo com sucesso!`);
     }
 
     if (contain("get")) {
