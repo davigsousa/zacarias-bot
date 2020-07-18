@@ -5,24 +5,17 @@ const axios = require("axios");
 
 const client = new Discord.Client();
 
-let first = true;
 const update = new Date();
 const updateDate = `${String(update.getDate()).padStart(2, "0")}/${String(
   update.getMonth() + 1
 ).padStart(2, "0")}/${update.getFullYear()}`;
-const updateMessage = `Última atualização realizada em ${updateDate}. Os saves antes disso foram perdidos.`;
-const saves = {};
+const updateMessage = `Última atualização realizada em ${updateDate}.`;
 
 client.on("ready", () => {
   console.log("I am ready!");
 });
 
 client.on("message", (message) => {
-  if (first) {
-    message.channel.send(updateMessage);
-    first = false;
-  }
-
   const contain = (target) => {
     return message.content.toLowerCase().includes(target);
   };
@@ -61,27 +54,6 @@ client.on("message", (message) => {
   }
 
   // Comandos
-  if (starts("=saves")) {
-    const parts = message.content.split(" ");
-
-    if (contain("add")) {
-      saves[parts[2]] = parts[3];
-      message.channel.send(`${parts[2]} salvo com sucesso!`);
-    } else if (contain("get")) {
-      if (saves.hasOwnProperty(parts[2])) {
-        message.channel.send(saves[parts[2]]);
-      } else {
-        message.channel.send("Infelizmente não pude achar essa informação.");
-      }
-    } else if (contain("list")) {
-      message.channel.send("Informações salvas:");
-      Object.keys(saves).forEach((item) => {
-        message.channel.send(item);
-      });
-      message.channel.send("============");
-    }
-  }
-
   if (starts("=update")) message.channel.send(updateMessage);
 });
 
