@@ -19,6 +19,8 @@ const client = new Discord.Client();
 
 client.on("ready", () => {
   console.log("I am ready!");
+
+  client.user.setActivity({ name: "-z ou zacarias" });
 });
 
 client.on("message", (message) => {
