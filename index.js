@@ -21,6 +21,16 @@ client.on("message", (message) => {
     return message.content.toLowerCase().startsWith(target);
   };
 
+  const playAudio = async (path) => {
+    const connection = await message.member.voice.channel.join();
+
+    const dispatcher = connection.play(path);
+    dispatcher.on("finish", () => {
+      dispatcher.destroy();
+      message.member.voice.channel.leave();
+    });
+  };
+
   // Ping Pong
   if (message.content === "ping") {
     message.channel.send("pong");
@@ -33,15 +43,7 @@ client.on("message", (message) => {
 
   if (contain("risadinha" || contain("risada"))) {
     if (message.member.voice.channel) {
-      (async () => {
-        const connection = await message.member.voice.channel.join();
-
-        const dispatcher = connection.play(RISADINHA);
-        dispatcher.on("finish", () => {
-          dispatcher.destroy();
-          message.member.voice.channel.leave();
-        });
-      })();
+      playAudio(RISADINHA);
     }
   }
 
