@@ -8,7 +8,7 @@ export function useMessageUtils(message: Discord.Message) {
   /**
    * Send message to Channel.
    */
-  const mSend = (target: string) => {
+  const mSend = (target: string | Discord.MessageEmbed) => {
     message.channel.send(target);
   };
 

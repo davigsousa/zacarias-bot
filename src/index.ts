@@ -12,7 +12,6 @@ const client = new Discord.Client();
 
 client.on("ready", () => {
   console.log("I am ready!");
-
   client.user.setActivity({ name: "-z ou zacarias", type: "WATCHING" });
 });
 
@@ -62,8 +61,14 @@ client.on("message", (message) => {
     if (contain("random") || (contain("manda") && contain("audio"))) {
       const scrapper = new Scrapper(API_URL);
 
-      scrapper.getRandom().then((random: string) => {
-        playAudio(random);
+      scrapper.getRandom().then((random) => {
+        const embed = new Discord.MessageEmbed()
+          .setTitle(random.name)
+          .setDescription("Clique para baixar")
+          .setURL(random.url);
+
+        playAudio(random.url);
+        mSend(embed);
       });
     }
 
