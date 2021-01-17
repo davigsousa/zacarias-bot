@@ -4,6 +4,8 @@ const Discord = require("discord.js");
 const axios = require("axios");
 const path = require("path");
 
+RISADINHA = path.join(__dirname, "/audios/risada.mp3");
+
 const client = new Discord.Client();
 
 client.on("ready", () => {
@@ -34,20 +36,11 @@ client.on("message", (message) => {
       (async () => {
         const connection = await message.member.voice.channel.join();
 
-        const dispatcher = connection.play(
-          path.join(__dirname, "/risada.mp3"),
-          { volume: 0.5 }
-        );
-
-        dispatcher.on("start", () => {
-          message.channel.send("Tentei executar!");
-        });
-
+        const dispatcher = connection.play(RISADINHA);
         dispatcher.on("finish", () => {
           dispatcher.destroy();
+          message.member.voice.channel.leave();
         });
-
-        dispatcher.on("error", message.channel.send);
       })();
     }
   }
