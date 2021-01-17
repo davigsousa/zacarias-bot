@@ -43,8 +43,8 @@ client.on("message", (message) => {
   };
 
   // Random React
-  if (true) {
-    message.react(_.sample([":smiling_face_with_tear:", ":joy:", ":rofl:"]));
+  if (_.sample([false, false, false, false, true])) {
+    message.react(_.sample(["😂", "🤣", "😆", "🥲"]));
   }
 
   // Ping Pong
