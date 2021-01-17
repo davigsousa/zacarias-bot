@@ -48,6 +48,7 @@ client.on("message", (message) => {
     message.channel.send("Sou euuuuu!!");
   }
 
+  // audios
   if (contain("risadinha" || contain("risada"))) {
     playAudio(RISADINHA);
   }

@@ -23,7 +23,7 @@ class Scrapper {
       mp3s.push(img.attribs["data-href"]);
     }
 
-    return _.sample(this.audios);
+    return _.sample(mp3s);
   }
 }
 
