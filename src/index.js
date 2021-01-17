@@ -6,6 +6,7 @@ const path = require("path");
 const Scrapper = require("./Scrapper");
 
 const API_URL = "https://audiosparazap.com/";
+const ZACARIAS = path.join(__dirname, "..", "/audios/zacarias.mp3");
 const RISADINHA = path.join(__dirname, "..", "/audios/risada.mp3");
 const BOA_NOITE = path.join(__dirname, "..", "/audios/boanoite.mp3");
 const EH_MEMO = path.join(__dirname, "..", "/audios/ehmemo.mp3");
@@ -43,12 +44,11 @@ client.on("message", (message) => {
     message.channel.send("pong");
   }
 
-  // Besteira
-  if (contain("otario") || contain("otaru") || contain("otário")) {
-    message.channel.send("Sou euuuuu!!");
+  // audios
+  if (contain("zacarias")) {
+    playAudio();
   }
 
-  // audios
   if (contain("risadinha" || contain("risada"))) {
     playAudio(RISADINHA);
   }
@@ -77,10 +77,6 @@ client.on("message", (message) => {
     scrapper.getRandom().then((random) => {
       playAudio(random);
     });
-  }
-
-  if (contain("mutado")) {
-    message.channel.send("sai cachorro vei fei daqui");
   }
 
   // Api de piadas
