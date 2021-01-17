@@ -55,8 +55,8 @@ client.on("message", (message) => {
   if (starts("-z") || starts("zacarias")) {
     // audios
     if (
-      message.content.strip() === "-z" ||
-      message.content.strip() === "zacarias"
+      message.content.trim() === "-z" ||
+      message.content.trim() === "zacarias"
     ) {
       playAudio(ZACARIAS);
     }
