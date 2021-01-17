@@ -1,21 +1,13 @@
 import dotenv from "dotenv";
 import Discord from "discord.js";
 import axios from "axios";
-import path from "path";
 import _ from "lodash";
-import Scrapper from "./Scrapper";
-import { shouldDo, useMessageUtils } from "./utils";
+import Scrapper from "./lib/Scrapper";
+import { shouldDo, useMessageUtils } from "./lib/utils";
+import * as audios from "./resources/localAudios";
+
 dotenv.config();
-
 const API_URL = process.env.API_URL;
-
-const AUDIO_PATH = path.join(__dirname, "..", "/audios");
-const ZACARIAS = path.join(AUDIO_PATH, "zacarias.mp3");
-const RISADINHA = path.join(AUDIO_PATH, "risada.mp3");
-const BOA_NOITE = path.join(AUDIO_PATH, "boanoite.mp3");
-const EH_MEMO = path.join(AUDIO_PATH, "ehmemo.mp3");
-const SEXTA = path.join(AUDIO_PATH, "sexta.mp3");
-
 const client = new Discord.Client();
 
 client.on("ready", () => {
@@ -38,23 +30,23 @@ client.on("message", (message) => {
       message.content.trim() === "-z" ||
       message.content.trim() === "zacarias"
     ) {
-      playAudio(ZACARIAS);
+      playAudio(audios.ZACARIAS);
     }
 
     if (contain("risadinha") || contain("risada")) {
-      playAudio(RISADINHA);
+      playAudio(audios.RISADINHA);
     }
 
     if (contain("boa noite")) {
-      playAudio(BOA_NOITE);
+      playAudio(audios.BOA_NOITE);
     }
 
     if (contain("é mesmo") || contain("eh memo")) {
-      playAudio(EH_MEMO);
+      playAudio(audios.EH_MEMO);
     }
 
     if (contain("chegou sexta")) {
-      playAudio(SEXTA);
+      playAudio(audios.SEXTA);
     }
 
     if (contain("audios")) {
