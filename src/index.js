@@ -5,15 +5,19 @@ const axios = require("axios");
 const path = require("path");
 const Scrapper = require("./Scrapper");
 
+const API_URL = "https://audiosparazap.com/";
 const RISADINHA = path.join(__dirname, "/audios/risada.mp3");
 const BOA_NOITE = path.join(__dirname, "/audios/boanoite.mp3");
 const EH_MEMO = path.join(__dirname, "/audios/ehmemo.mp3");
 const SEXTA = path.join(__dirname, "/audios/sexta.mp3");
 
 const client = new Discord.Client();
+const scrapper = new Scrapper();
 
 client.on("ready", () => {
   console.log("I am ready!");
+
+  scrapper.getAllAudios();
 });
 
 client.on("message", (message) => {
@@ -67,13 +71,15 @@ client.on("message", (message) => {
     message.channel.send(
       "Áudios disponíveis localmente:\n'risadinha', 'boa noite', 'eh memo', 'chegou sexta'"
     );
+    message.channel.send(`${scrapper.audios.length} disponíveis na nuvem.`);
   }
 
   if (starts("=random")) {
-    const scrapper = new Scrapper("https://audiosparazap.com/");
-    scrapper.getRandom().then((random) => {
-      playAudio(random);
-    });
+    if (scrapper.isAvaiable()) {
+      playAudio(scrapper.getRandom());
+    } else {
+      message.channel.send("Os áudios ainda não foram carregados.");
+    }
   }
 
   if (contain("mutado")) {
