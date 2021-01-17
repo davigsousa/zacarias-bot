@@ -9,7 +9,7 @@ client.on("ready", () => {
   console.log("I am ready!");
 });
 
-client.on("message", async (message) => {
+client.on("message", (message) => {
   const contain = (target) => {
     return message.content.toLowerCase().includes(target);
   };
@@ -30,19 +30,21 @@ client.on("message", async (message) => {
 
   if (contain("risadinha" || contain("risada"))) {
     if (message.member.voice.channel) {
-      const connection = await message.member.voice.channel.join();
+      (async () => {
+        const connection = await message.member.voice.channel.join();
 
-      const dispatcher = connection.play("risada.mp3", { volume: 0.5 });
+        const dispatcher = connection.play("risada.mp3", { volume: 0.5 });
 
-      dispatcher.on("start", () => {
-        message.channel.send("Tentei executar!");
-      });
+        dispatcher.on("start", () => {
+          message.channel.send("Tentei executar!");
+        });
 
-      dispatcher.on("finish", () => {
-        dispatcher.destroy();
-      });
+        dispatcher.on("finish", () => {
+          dispatcher.destroy();
+        });
 
-      dispatcher.on("error", message.channel.send);
+        dispatcher.on("error", message.channel.send);
+      })();
     }
   }
 
