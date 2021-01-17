@@ -6,7 +6,7 @@ const path = require("path");
 const _ = require("lodash");
 const Scrapper = require("./Scrapper");
 
-const API_URL = "https://audiosparazap.com/";
+const API_URL = process.env.API_URL;
 
 const AUDIO_PATH = path.join(__dirname, "..", "/audios");
 const ZACARIAS = path.join(AUDIO_PATH, "zacarias.mp3");
