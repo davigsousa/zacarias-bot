@@ -2,10 +2,8 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 const _ = require("lodash");
 
-function between(min, max) {  
-  return Math.floor(
-    Math.random() * (max - min) + min
-  )
+function between(min, max) {
+  return Math.floor(Math.random() * (max - min) + min);
 }
 
 class Scrapper {
@@ -13,7 +11,7 @@ class Scrapper {
     this.url = url;
   }
 
-  getRandom() {
+  async getRandom() {
     const i = between(1, 110);
     const response = await axios.default.get(`${this.url}/page/${i}`);
 

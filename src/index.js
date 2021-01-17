@@ -12,12 +12,9 @@ const EH_MEMO = path.join(__dirname, "/audios/ehmemo.mp3");
 const SEXTA = path.join(__dirname, "/audios/sexta.mp3");
 
 const client = new Discord.Client();
-// const scrapper = new Scrapper(API_URL);
 
 client.on("ready", () => {
   console.log("I am ready!");
-
-  // scrapper.getAllAudios();
 });
 
 client.on("message", (message) => {
@@ -74,7 +71,11 @@ client.on("message", (message) => {
   }
 
   if (starts("=random")) {
-    playAudio(scrapper.getRandom());
+    const scrapper = new Scrapper(API_URL);
+
+    scrapper.getRandom().then((random) => {
+      playAudio(random);
+    });
   }
 
   if (contain("mutado")) {
