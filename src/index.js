@@ -83,6 +83,10 @@ client.on("message", (message) => {
       );
     }
 
+    if (contain("leave")) {
+      message.member.voice.channel.leave();
+    }
+
     if (contain("random") || (contain("manda") && contain("audio"))) {
       const scrapper = new Scrapper(API_URL);
 
