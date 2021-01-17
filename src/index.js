@@ -43,7 +43,7 @@ client.on("message", (message) => {
   };
 
   // Random React
-  if (_.sample([false, false, false, false, true])) {
+  if (_.sample([false, false, false, false, true, false, false, false])) {
     message.react(_.sample(["😂", "🤣", "😆", "🥲"]));
   }
 
