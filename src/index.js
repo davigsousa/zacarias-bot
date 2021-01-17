@@ -3,6 +3,7 @@ require("dotenv").config();
 const Discord = require("discord.js");
 const axios = require("axios");
 const path = require("path");
+const _ = require("lodash");
 const Scrapper = require("./Scrapper");
 
 const API_URL = "https://audiosparazap.com/";
@@ -40,6 +41,11 @@ client.on("message", (message) => {
       });
     }
   };
+
+  // Random React
+  if (_.sample([false, false, false, false, true])) {
+    message.react(_.sample([":smiling_face_with_tear:", ":joy:", ":rofl:"]));
+  }
 
   // Ping Pong
   if (message.content === "ping") {
