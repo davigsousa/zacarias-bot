@@ -2,6 +2,7 @@
 require("dotenv").config();
 const Discord = require("discord.js");
 const axios = require("axios");
+const path = require("path");
 
 const client = new Discord.Client();
 
@@ -33,7 +34,10 @@ client.on("message", (message) => {
       (async () => {
         const connection = await message.member.voice.channel.join();
 
-        const dispatcher = connection.play("risada.mp3", { volume: 0.5 });
+        const dispatcher = connection.play(
+          "http://www.sample-videos.com/audio/mp3/wave.mp3",
+          { volume: 0.5 }
+        );
 
         dispatcher.on("start", () => {
           message.channel.send("Tentei executar!");
