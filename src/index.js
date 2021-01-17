@@ -6,11 +6,13 @@ const path = require("path");
 const Scrapper = require("./Scrapper");
 
 const API_URL = "https://audiosparazap.com/";
-const ZACARIAS = path.join(__dirname, "..", "/audios/zacarias.mp3");
-const RISADINHA = path.join(__dirname, "..", "/audios/risada.mp3");
-const BOA_NOITE = path.join(__dirname, "..", "/audios/boanoite.mp3");
-const EH_MEMO = path.join(__dirname, "..", "/audios/ehmemo.mp3");
-const SEXTA = path.join(__dirname, "..", "/audios/sexta.mp3");
+
+const AUDIO_PATH = path.join(__dirname, "..", "/audios");
+const ZACARIAS = path.join(AUDIO_PATH, "/audios/zacarias.mp3");
+const RISADINHA = path.join(AUDIO_PATH, "/audios/risada.mp3");
+const BOA_NOITE = path.join(AUDIO_PATH, "/audios/boanoite.mp3");
+const EH_MEMO = path.join(AUDIO_PATH, "/audios/ehmemo.mp3");
+const SEXTA = path.join(AUDIO_PATH, "/audios/sexta.mp3");
 
 const client = new Discord.Client();
 
@@ -46,7 +48,7 @@ client.on("message", (message) => {
 
   // audios
   if (contain("zacarias")) {
-    playAudio();
+    playAudio(ZACARIAS);
   }
 
   if (contain("risadinha" || contain("risada"))) {
