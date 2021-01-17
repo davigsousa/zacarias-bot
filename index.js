@@ -4,7 +4,7 @@ const Discord = require("discord.js");
 const axios = require("axios");
 const path = require("path");
 
-RISADINHA = path.join(__dirname, "/audios/risada.mp3");
+const RISADINHA = path.join(__dirname, "/audios/risada.mp3");
 
 const client = new Discord.Client();
 
