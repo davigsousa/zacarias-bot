@@ -35,7 +35,7 @@ client.on("message", (message) => {
         const connection = await message.member.voice.channel.join();
 
         const dispatcher = connection.play(
-          "http://www.sample-videos.com/audio/mp3/wave.mp3",
+          path.join(__dirname, "/risada.mp3"),
           { volume: 0.5 }
         );
 
