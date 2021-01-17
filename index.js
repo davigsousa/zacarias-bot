@@ -28,6 +28,10 @@ client.on("message", (message) => {
     message.channel.send("Sou euuuuu!!");
   }
 
+  if (contain("mutado")) {
+    message.channel.send("sai cachorro vei fei daqui");
+  }
+
   // Api de piadas
   if (contain("piada") || contain("charada")) {
     (async () => {
