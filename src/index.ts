@@ -5,6 +5,7 @@ import _ from "lodash";
 import Scrapper from "./lib/Scrapper";
 import { shouldDo, useMessageUtils } from "./lib/utils";
 import * as audios from "./resources/localAudios";
+import dialogs from "./resources/dialogs";
 
 dotenv.config();
 const API_URL = process.env.API_URL;
@@ -29,6 +30,13 @@ client.on("message", (message) => {
       message.content.trim() === "-z" ||
       message.content.trim() === "zacarias"
     ) {
+      const embed = new Discord.MessageEmbed()
+        .setTitle("Zacarias BOT")
+        .setDescription(dialogs.help)
+        .setURL("https://github.com/davigsousa/zacarias-bot")
+        .setFooter("Divirta-se!");
+
+      mSend(embed);
       playAudio(audios.ZACARIAS);
     }
 
