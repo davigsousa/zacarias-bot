@@ -22,6 +22,10 @@ client.on("ready", () => {
 });
 
 client.on("message", (message) => {
+  const mSend = (target) => {
+    message.channel.send(target);
+  };
+
   const contain = (target) => {
     return message.content.toLowerCase().includes(target);
   };
@@ -41,6 +45,8 @@ client.on("message", (message) => {
       });
     }
   };
+
+  mSend(API_URL);
 
   // Random React
   if (_.sample([false, false, false, false, true, false, false, false])) {
@@ -73,7 +79,7 @@ client.on("message", (message) => {
     }
 
     if (contain("audios")) {
-      message.channel.send(
+      mSend(
         "Áudios disponíveis localmente:\n'risadinha', 'boa noite', 'eh memo', 'chegou sexta'"
       );
     }
@@ -104,8 +110,8 @@ client.on("message", (message) => {
 
         const { pergunta, resposta } = response.data;
 
-        message.channel.send(pergunta);
-        message.channel.send(`R- ${resposta}`);
+        mSend(pergunta);
+        mSend(`R- ${resposta}`);
       })();
     }
   }
