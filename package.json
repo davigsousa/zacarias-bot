@@ -2,10 +2,13 @@
   "name": "zacarias-bot",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "engines": { "node": "15.3.0" },
   "scripts": {
-    "start": "node src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "postinstall": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules src/index.ts",
+    "deploy": "git push heroku master"
   },
   "author": "",
   "license": "ISC",
@@ -16,5 +19,11 @@
     "discord.js": "^12.2.0",
     "dotenv": "^8.2.0",
     "lodash": "^4.17.20"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.167",
+    "@types/node": "^14.14.21",
+    "ts-node-dev": "^1.1.1",
+    "typescript": "^4.1.3"
   }
 }

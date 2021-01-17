@@ -1,9 +1,9 @@
-"use strict";
-require("dotenv").config();
-const Discord = require("discord.js");
-const axios = require("axios");
-const path = require("path");
-const _ = require("lodash");
+import dotenv from "dotenv";
+import Discord from "discord.js";
+import axios from "axios";
+import path from "path";
+import _ from "lodash";
+dotenv.config();
 
 const Scrapper = require("./Scrapper");
 const { useMessageUtils, shouldDo } = require("./utils");
@@ -71,7 +71,7 @@ client.on("message", (message) => {
     if (contain("random") || (contain("manda") && contain("audio"))) {
       const scrapper = new Scrapper(API_URL);
 
-      scrapper.getRandom().then((random) => {
+      scrapper.getRandom().then((random: string) => {
         playAudio(random);
       });
     }
@@ -79,7 +79,7 @@ client.on("message", (message) => {
     // Api de piadas
     if (contain("piada") || contain("charada")) {
       (async () => {
-        const response = await axios.default.get(
+        const response = await axios.get(
           "https://us-central1-kivson.cloudfunctions.net/charada-aleatoria",
           {
             headers: {

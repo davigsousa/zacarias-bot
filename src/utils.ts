@@ -1,16 +1,16 @@
-const Discord = require("discord.js");
-const _ = require("lodash");
+import Discord from "discord.js";
+import _ from "lodash";
 
 /**
  * Return all discord message utilitaries
  * @param {Discord.Message} message
  */
-function useMessageUtils(message) {
+function useMessageUtils(message: Discord.Message) {
   /**
    * Send message to Channel.
    * @param {string} target
    */
-  const mSend = (target) => {
+  const mSend = (target: string) => {
     message.channel.send(target);
   };
 
@@ -18,7 +18,7 @@ function useMessageUtils(message) {
    * check if the target is contained on content
    * @param {string} target
    */
-  const contain = (target) => {
+  const contain = (target: string) => {
     return message.content.toLowerCase().includes(target);
   };
 
@@ -26,7 +26,7 @@ function useMessageUtils(message) {
    * check if the content is started by target
    * @param {string} target
    */
-  const starts = (target) => {
+  const starts = (target: string) => {
     return message.content.toLowerCase().startsWith(target);
   };
 
@@ -34,7 +34,7 @@ function useMessageUtils(message) {
    * Enter voice channel and play audio file
    * @param {string} path Audio file path
    */
-  const playAudio = async (path) => {
+  const playAudio = async (path: string) => {
     if (message.member.voice.channel) {
       const connection = await message.member.voice.channel.join();
 
@@ -49,13 +49,15 @@ function useMessageUtils(message) {
   return { mSend, contain, starts, playAudio };
 }
 
+type Chance = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+
 /**
  * Pass the event chance to occur, so, 10%, chance = 1.
- * @param {1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9} chance
+ * @param {Chance} chance
  * @returns {boolean} boolean value
  */
-function shouldDo(chance) {
-  let chances = [];
+function shouldDo(chance: Chance) {
+  let chances: boolean[] = [];
   while (chance--) {
     chances = [...chances, true];
   }
