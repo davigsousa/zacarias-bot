@@ -10,7 +10,7 @@ class Scrapper {
   }
 
   async getAllAudios() {
-    for (let i = 1; i <= 109; i++) {
+    for (let i = 2; i <= 109; i++) {
       sleep(1);
       const response = await axios.default.get(`${this.url}/page/${i}`);
 
