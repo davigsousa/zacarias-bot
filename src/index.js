@@ -6,10 +6,10 @@ const path = require("path");
 const Scrapper = require("./Scrapper");
 
 const API_URL = "https://audiosparazap.com/";
-const RISADINHA = path.join(__dirname, "/audios/risada.mp3");
-const BOA_NOITE = path.join(__dirname, "/audios/boanoite.mp3");
-const EH_MEMO = path.join(__dirname, "/audios/ehmemo.mp3");
-const SEXTA = path.join(__dirname, "/audios/sexta.mp3");
+const RISADINHA = path.join(__dirname, "..", "/audios/risada.mp3");
+const BOA_NOITE = path.join(__dirname, "..", "/audios/boanoite.mp3");
+const EH_MEMO = path.join(__dirname, "..", "/audios/ehmemo.mp3");
+const SEXTA = path.join(__dirname, "..", "/audios/sexta.mp3");
 
 const client = new Discord.Client();
 
