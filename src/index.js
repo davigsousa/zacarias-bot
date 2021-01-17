@@ -52,7 +52,7 @@ client.on("message", (message) => {
     message.channel.send("pong");
   }
 
-  if (starts("-z") || starts("zacarias")) {
+  if (starts("-z") || contain("zacarias")) {
     // audios
     if (
       message.content.trim() === "-z" ||
@@ -77,7 +77,7 @@ client.on("message", (message) => {
       playAudio(SEXTA);
     }
 
-    if (starts("audios")) {
+    if (contain("audios")) {
       message.channel.send(
         "Áudios disponíveis localmente:\n'risadinha', 'boa noite', 'eh memo', 'chegou sexta'"
       );
