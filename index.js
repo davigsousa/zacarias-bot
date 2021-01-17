@@ -9,7 +9,7 @@ client.on("ready", () => {
   console.log("I am ready!");
 });
 
-client.on("message", (message) => {
+client.on("message", async (message) => {
   const contain = (target) => {
     return message.content.toLowerCase().includes(target);
   };
@@ -26,6 +26,18 @@ client.on("message", (message) => {
   // Besteira
   if (contain("otario") || contain("otaru") || contain("otário")) {
     message.channel.send("Sou euuuuu!!");
+  }
+
+  if (contain("risadinha" || contain("risada"))) {
+    if (message.member.voice.channel) {
+      const connection = await message.member.voice.channel.join();
+
+      const dispatcher = connection.play("risada.mp3");
+
+      dispatcher.on("finish", () => {
+        message.member.voice.channel.leave();
+      });
+    }
   }
 
   if (contain("mutado")) {
