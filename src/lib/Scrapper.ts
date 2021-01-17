@@ -22,7 +22,6 @@ class Scrapper {
     const $ = cheerio.load(response.data);
     const imgs = $('img[alt="play now"]').get();
     const names = $("div.audioname h3 a").get();
-    console.log(names);
 
     const mp3s: Audio[] = [];
     for (let i = 0; i < imgs.length; i++) {
