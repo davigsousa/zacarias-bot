@@ -4,7 +4,9 @@ const Discord = require("discord.js");
 const axios = require("axios");
 const path = require("path");
 const _ = require("lodash");
+
 const Scrapper = require("./Scrapper");
+const { useMessageUtils, shouldDo } = require("./utils");
 
 const API_URL = process.env.API_URL;
 
@@ -24,32 +26,10 @@ client.on("ready", () => {
 });
 
 client.on("message", (message) => {
-  const mSend = (target) => {
-    message.channel.send(target);
-  };
-
-  const contain = (target) => {
-    return message.content.toLowerCase().includes(target);
-  };
-
-  const starts = (target) => {
-    return message.content.toLowerCase().startsWith(target);
-  };
-
-  const playAudio = async (path) => {
-    if (message.member.voice.channel) {
-      const connection = await message.member.voice.channel.join();
-
-      const dispatcher = connection.play(path);
-      dispatcher.on("finish", () => {
-        dispatcher.destroy();
-        message.member.voice.channel.leave();
-      });
-    }
-  };
+  const { mSend, contain, starts, playAudio } = useMessageUtils(message);
 
   // Random React
-  if (_.sample([false, false, false, false, true, false, false, false])) {
+  if (shouldDo(1)) {
     message.react(_.sample(["😂", "🤣", "😆", "🥲"]));
   }
 
