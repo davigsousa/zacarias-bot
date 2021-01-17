@@ -52,9 +52,12 @@ client.on("message", (message) => {
     message.channel.send("pong");
   }
 
-  if (starts("=z") || starts("zacarias")) {
+  if (starts("-z") || starts("zacarias")) {
     // audios
-    if (message.content.length.strip() === 2) {
+    if (
+      message.content.strip() === "-z" ||
+      message.content.strip() === "zacarias"
+    ) {
       playAudio(ZACARIAS);
     }
 
