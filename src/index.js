@@ -71,15 +71,10 @@ client.on("message", (message) => {
     message.channel.send(
       "Áudios disponíveis localmente:\n'risadinha', 'boa noite', 'eh memo', 'chegou sexta'"
     );
-    message.channel.send(`${scrapper.audios.length} disponíveis na nuvem.`);
   }
 
   if (starts("=random")) {
-    if (scrapper.isAvaiable()) {
-      playAudio(scrapper.getRandom());
-    } else {
-      message.channel.send("Os áudios ainda não foram carregados.");
-    }
+    playAudio(scrapper.getRandom());
   }
 
   if (contain("mutado")) {
