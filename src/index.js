@@ -8,11 +8,11 @@ const Scrapper = require("./Scrapper");
 const API_URL = "https://audiosparazap.com/";
 
 const AUDIO_PATH = path.join(__dirname, "..", "/audios");
-const ZACARIAS = path.join(AUDIO_PATH, "/audios/zacarias.mp3");
-const RISADINHA = path.join(AUDIO_PATH, "/audios/risada.mp3");
-const BOA_NOITE = path.join(AUDIO_PATH, "/audios/boanoite.mp3");
-const EH_MEMO = path.join(AUDIO_PATH, "/audios/ehmemo.mp3");
-const SEXTA = path.join(AUDIO_PATH, "/audios/sexta.mp3");
+const ZACARIAS = path.join(AUDIO_PATH, "zacarias.mp3");
+const RISADINHA = path.join(AUDIO_PATH, "risada.mp3");
+const BOA_NOITE = path.join(AUDIO_PATH, "boanoite.mp3");
+const EH_MEMO = path.join(AUDIO_PATH, "ehmemo.mp3");
+const SEXTA = path.join(AUDIO_PATH, "sexta.mp3");
 
 const client = new Discord.Client();
 
