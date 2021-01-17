@@ -47,11 +47,6 @@ client.on("message", (message) => {
     message.react(_.sample(["😂", "🤣", "😆", "🥲"]));
   }
 
-  // Ping Pong
-  if (message.content === "ping") {
-    message.channel.send("pong");
-  }
-
   if (starts("-z") || contain("zacarias")) {
     // audios
     if (
