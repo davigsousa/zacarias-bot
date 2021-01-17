@@ -46,8 +46,6 @@ client.on("message", (message) => {
     }
   };
 
-  mSend(API_URL);
-
   // Random React
   if (_.sample([false, false, false, false, true, false, false, false])) {
     message.react(_.sample(["😂", "🤣", "😆", "🥲"]));
