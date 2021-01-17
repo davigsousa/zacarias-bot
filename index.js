@@ -5,6 +5,7 @@ const axios = require("axios");
 const path = require("path");
 
 const RISADINHA = path.join(__dirname, "/audios/risada.mp3");
+const BOA_NOITE = path.join(__dirname, "/audios/boanoite.mp3");
 
 const client = new Discord.Client();
 
@@ -22,13 +23,15 @@ client.on("message", (message) => {
   };
 
   const playAudio = async (path) => {
-    const connection = await message.member.voice.channel.join();
+    if (message.member.voice.channel) {
+      const connection = await message.member.voice.channel.join();
 
-    const dispatcher = connection.play(path);
-    dispatcher.on("finish", () => {
-      dispatcher.destroy();
-      message.member.voice.channel.leave();
-    });
+      const dispatcher = connection.play(path);
+      dispatcher.on("finish", () => {
+        dispatcher.destroy();
+        message.member.voice.channel.leave();
+      });
+    }
   };
 
   // Ping Pong
@@ -42,9 +45,11 @@ client.on("message", (message) => {
   }
 
   if (contain("risadinha" || contain("risada"))) {
-    if (message.member.voice.channel) {
-      playAudio(RISADINHA);
-    }
+    playAudio(RISADINHA);
+  }
+
+  if (contain("boa noite")) {
+    playAudio(BOA_NOITE);
   }
 
   if (contain("mutado")) {
