@@ -46,58 +46,60 @@ client.on("message", (message) => {
     message.channel.send("pong");
   }
 
-  // audios
-  if (contain("zacarias")) {
-    playAudio(ZACARIAS);
-  }
+  if (starts("=z") || starts("zacarias")) {
+    // audios
+    if (message.content.length.strip() === 2) {
+      playAudio(ZACARIAS);
+    }
 
-  if (contain("risadinha" || contain("risada"))) {
-    playAudio(RISADINHA);
-  }
+    if (contain("risadinha" || contain("risada"))) {
+      playAudio(RISADINHA);
+    }
 
-  if (contain("boa noite")) {
-    playAudio(BOA_NOITE);
-  }
+    if (contain("boa noite")) {
+      playAudio(BOA_NOITE);
+    }
 
-  if (contain("é mesmo") || contain("eh memo")) {
-    playAudio(EH_MEMO);
-  }
+    if (contain("é mesmo") || contain("eh memo")) {
+      playAudio(EH_MEMO);
+    }
 
-  if (contain("chegou sexta")) {
-    playAudio(SEXTA);
-  }
+    if (contain("chegou sexta")) {
+      playAudio(SEXTA);
+    }
 
-  if (starts("=audios")) {
-    message.channel.send(
-      "Áudios disponíveis localmente:\n'risadinha', 'boa noite', 'eh memo', 'chegou sexta'"
-    );
-  }
-
-  if (starts("=random") || (contain("manda") && contain("audio"))) {
-    const scrapper = new Scrapper(API_URL);
-
-    scrapper.getRandom().then((random) => {
-      playAudio(random);
-    });
-  }
-
-  // Api de piadas
-  if (contain("piada") || contain("charada")) {
-    (async () => {
-      const response = await axios.default.get(
-        "https://us-central1-kivson.cloudfunctions.net/charada-aleatoria",
-        {
-          headers: {
-            Accept: "application/json",
-          },
-        }
+    if (starts("audios")) {
+      message.channel.send(
+        "Áudios disponíveis localmente:\n'risadinha', 'boa noite', 'eh memo', 'chegou sexta'"
       );
+    }
 
-      const { pergunta, resposta } = response.data;
+    if (contain("random") || (contain("manda") && contain("audio"))) {
+      const scrapper = new Scrapper(API_URL);
 
-      message.channel.send(pergunta);
-      message.channel.send(`R- ${resposta}`);
-    })();
+      scrapper.getRandom().then((random) => {
+        playAudio(random);
+      });
+    }
+
+    // Api de piadas
+    if (contain("piada") || contain("charada")) {
+      (async () => {
+        const response = await axios.default.get(
+          "https://us-central1-kivson.cloudfunctions.net/charada-aleatoria",
+          {
+            headers: {
+              Accept: "application/json",
+            },
+          }
+        );
+
+        const { pergunta, resposta } = response.data;
+
+        message.channel.send(pergunta);
+        message.channel.send(`R- ${resposta}`);
+      })();
+    }
   }
 });
 
