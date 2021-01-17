@@ -6,6 +6,8 @@ const path = require("path");
 
 const RISADINHA = path.join(__dirname, "/audios/risada.mp3");
 const BOA_NOITE = path.join(__dirname, "/audios/boanoite.mp3");
+const EH_MEMO = path.join(__dirname, "/audios/ehmemo.mp3");
+const SEXTA = path.join(__dirname, "/audios/sexta.mp3");
 
 const client = new Discord.Client();
 
@@ -50,6 +52,20 @@ client.on("message", (message) => {
 
   if (contain("boa noite")) {
     playAudio(BOA_NOITE);
+  }
+
+  if (contain("é mesmo") || contain("eh memo")) {
+    playAudio(EH_MEMO);
+  }
+
+  if (contain("chegou sexta")) {
+    playAudio(SEXTA);
+  }
+
+  if (starts("=audios")) {
+    message.channel.send(
+      "Áudios disponíveis:\n'risadinha', 'boa noite', 'eh memo', 'chegou sexta'"
+    );
   }
 
   if (contain("mutado")) {
