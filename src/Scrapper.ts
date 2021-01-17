@@ -1,10 +1,7 @@
 import axios from "axios";
 import cheerio from "cheerio";
 import _ from "lodash";
-
-function between(min: number, max: number) {
-  return Math.floor(Math.random() * (max - min) + min);
-}
+import { between } from "./utils";
 
 class Scrapper {
   private url: string;
@@ -29,4 +26,4 @@ class Scrapper {
   }
 }
 
-module.exports = Scrapper;
+export default Scrapper;

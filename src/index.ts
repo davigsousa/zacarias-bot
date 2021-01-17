@@ -3,10 +3,9 @@ import Discord from "discord.js";
 import axios from "axios";
 import path from "path";
 import _ from "lodash";
+import Scrapper from "./Scrapper";
+import { shouldDo, useMessageUtils } from "./utils";
 dotenv.config();
-
-const Scrapper = require("./Scrapper");
-const { useMessageUtils, shouldDo } = require("./utils");
 
 const API_URL = process.env.API_URL;
 
@@ -42,7 +41,7 @@ client.on("message", (message) => {
       playAudio(ZACARIAS);
     }
 
-    if (contain("risadinha" || contain("risada"))) {
+    if (contain("risadinha") || contain("risada")) {
       playAudio(RISADINHA);
     }
 
