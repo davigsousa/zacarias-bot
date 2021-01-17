@@ -32,11 +32,17 @@ client.on("message", async (message) => {
     if (message.member.voice.channel) {
       const connection = await message.member.voice.channel.join();
 
-      const dispatcher = connection.play("risada.mp3");
+      const dispatcher = connection.play("risada.mp3", { volume: 0.5 });
+
+      dispatcher.on("start", () => {
+        message.channel.send("Tentei executar!");
+      });
 
       dispatcher.on("finish", () => {
-        message.member.voice.channel.leave();
+        dispatcher.destroy();
       });
+
+      dispatcher.on("error", message.channel.send);
     }
   }
 
