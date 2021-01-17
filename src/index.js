@@ -71,7 +71,7 @@ client.on("message", (message) => {
     );
   }
 
-  if (starts("=random")) {
+  if (starts("=random") || (contain("manda") && contain("audio"))) {
     const scrapper = new Scrapper(API_URL);
 
     scrapper.getRandom().then((random) => {
