@@ -5,12 +5,6 @@ const axios = require("axios");
 
 const client = new Discord.Client();
 
-const update = new Date();
-const updateDate = `${String(update.getDate()).padStart(2, "0")}/${String(
-  update.getMonth() + 1
-).padStart(2, "0")}/${update.getFullYear()}`;
-const updateMessage = `Última atualização realizada em ${updateDate}.`;
-
 client.on("ready", () => {
   console.log("I am ready!");
 });
@@ -52,9 +46,6 @@ client.on("message", (message) => {
       message.channel.send(`R- ${resposta}`);
     })();
   }
-
-  // Comandos
-  if (starts("=update")) message.channel.send(updateMessage);
 });
 
 client.login(process.env.TOKEN);
