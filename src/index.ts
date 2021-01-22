@@ -2,6 +2,7 @@ import dotenv from "dotenv";
 import Discord from "discord.js";
 import axios from "axios";
 import _ from "lodash";
+import cron from "node-cron";
 import Scrapper from "./lib/Scrapper";
 import { shouldDo, useMessageUtils } from "./lib/utils";
 import * as audios from "./resources/localAudios";
@@ -102,3 +103,11 @@ client.on("message", (message) => {
 });
 
 client.login(process.env.TOKEN);
+
+cron.schedule("00 03 * * *", () => {
+  client.destroy();
+});
+
+cron.schedule("00 10 * * *", () => {
+  client.login(process.env.TOKEN);
+});
