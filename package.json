@@ -20,8 +20,7 @@
     "cheerio": "^1.0.0-rc.5",
     "discord.js": "^12.2.0",
     "dotenv": "^8.2.0",
-    "lodash": "^4.17.20",
-    "node-cron": "^2.0.3"
+    "lodash": "^4.17.20"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.167",
