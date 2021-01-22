@@ -105,7 +105,7 @@ client.on("message", (message) => {
 client.login(process.env.TOKEN);
 
 cron.schedule(
-  "06 13 * * *",
+  "10 13 * * *",
   () => {
     client.destroy();
     console.log("Discord client destroyed.");
@@ -116,7 +116,7 @@ cron.schedule(
 );
 
 cron.schedule(
-  "10 13 * * *",
+  "15 13 * * *",
   () => {
     client.login(process.env.TOKEN);
     console.log("Discord client started.");
