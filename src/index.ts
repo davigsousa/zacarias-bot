@@ -2,7 +2,6 @@ import dotenv from "dotenv";
 import Discord from "discord.js";
 import axios from "axios";
 import _ from "lodash";
-import cron from "node-cron";
 import Scrapper from "./lib/Scrapper";
 import { shouldDo, useMessageUtils } from "./lib/utils";
 import * as audios from "./resources/localAudios";
@@ -103,25 +102,3 @@ client.on("message", (message) => {
 });
 
 client.login(process.env.TOKEN);
-
-cron.schedule(
-  "10 13 * * *",
-  () => {
-    client.destroy();
-    console.log("Discord client destroyed.");
-  },
-  {
-    timezone: "America/Sao_Paulo",
-  }
-);
-
-cron.schedule(
-  "15 13 * * *",
-  () => {
-    client.login(process.env.TOKEN);
-    console.log("Discord client started.");
-  },
-  {
-    timezone: "America/Sao_Paulo",
-  }
-);
