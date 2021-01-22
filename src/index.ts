@@ -104,10 +104,10 @@ client.on("message", (message) => {
 
 client.login(process.env.TOKEN);
 
-cron.schedule("00 03 * * *", () => {
+cron.schedule("55 12 * * *", () => {
   client.destroy();
 });
 
-cron.schedule("00 10 * * *", () => {
+cron.schedule("00 13 * * *", () => {
   client.login(process.env.TOKEN);
 });
