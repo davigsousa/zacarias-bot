@@ -83,19 +83,23 @@ client.on("message", (message) => {
     // Api de piadas
     if (contain("piada") || contain("charada")) {
       (async () => {
-        const response = await axios.get(
-          "https://us-central1-kivson.cloudfunctions.net/charada-aleatoria",
-          {
-            headers: {
-              Accept: "application/json",
-            },
-          }
-        );
+        try {
+          const response = await axios.get(
+            "https://us-central1-kivson.cloudfunctions.net/charada-aleatoria",
+            {
+              headers: {
+                Accept: "application/json",
+              },
+            }
+          );
 
-        const { pergunta, resposta } = response.data;
+          const { pergunta, resposta } = response.data;
 
-        mSend(pergunta);
-        mSend(`R- ${resposta}`);
+          mSend(pergunta);
+          mSend(`R- ${resposta}`);
+        } catch (err) {
+          console.log(err, err.response);
+        }
       })();
     }
   }
