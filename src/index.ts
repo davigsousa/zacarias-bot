@@ -80,24 +80,24 @@ client.on("message", (message) => {
       });
     }
 
-    // Api de piadas (Parou de)
-    // if (contain("piada") || contain("charada")) {
-    //   (async () => {
-    //     const response = await axios.get(
-    //       "https://us-central1-kivson.cloudfunctions.net/charada-aleatoria",
-    //       {
-    //         headers: {
-    //           Accept: "application/json",
-    //         },
-    //       }
-    //     );
+    // Jokes API
+    if (contain("piada") || contain("charada")) {
+      (async () => {
+        const response = await axios.get(
+          "https://api-charada.herokuapp.com/puzzle?lang=ptbr",
+          {
+            headers: {
+              Accept: "application/json",
+            },
+          }
+        );
 
-    //     const { pergunta, resposta } = response.data;
+        const { question, answer } = response.data;
 
-    //     mSend(pergunta);
-    //     mSend(`R- ${resposta}`);
-    //   })();
-    // }
+        mSend(question);
+        mSend(`R- ${answer}`);
+      })();
+    }
   }
 });
 
